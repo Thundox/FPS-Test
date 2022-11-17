@@ -19,10 +19,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        
+        Movement();
 
-        
-        
+
+
     }
     // Update is called once per frame
     void Update()
@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         transform.RotateAround(PlayerGameObject.transform.position, Vector3.up, RotateHorizontal * Sensitivity);
         // Camera up and down movement
         Head.transform.RotateAround(Head.transform.position, -transform.right, RotateVertical * Sensitivity);
-        Movement();
+        
         Jump();
     }
 
