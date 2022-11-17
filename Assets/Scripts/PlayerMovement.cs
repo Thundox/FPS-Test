@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     public float JumpHeight;
     private Rigidbody RB;
     private bool IsGrounded = false;
+    float MovementHorizontal = 0;
+    float MovementVertical = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -29,27 +31,33 @@ public class PlayerMovement : MonoBehaviour
     {
         float RotateHorizontal = Input.GetAxis("Mouse X");
         float RotateVertical = Input.GetAxis("Mouse Y");
+        MovementHorizontal = Input.GetAxis("Horizontal");
+        MovementVertical = Input.GetAxis("Vertical");
+
         // Camera left and right movement
         transform.RotateAround(PlayerGameObject.transform.position, Vector3.up, RotateHorizontal * Sensitivity);
         // Camera up and down movement
         Head.transform.RotateAround(Head.transform.position, -transform.right, RotateVertical * Sensitivity);
+
         
         Jump();
     }
 
     void Movement()
     {
-        if( Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0 )
-        {
+        
+        
             //RB.AddForce(transform.forward * Speed);
             // Forward and back movement
-            RB.MovePosition(transform.position + (transform.forward * Input.GetAxis("Vertical") * Speed * Time.deltaTime) +
+            RB.MovePosition(transform.position + (transform.forward * MovementVertical * Speed * Time.deltaTime) +
                 // Left and Right movement
-                                                 (transform.right * Input.GetAxis("Horizontal") * Speed * Time.deltaTime));
+                                                 (transform.right * MovementHorizontal * Speed * Time.deltaTime));
 
-        }
+        
 
     }
+
+
 
     void Jump()
     {
