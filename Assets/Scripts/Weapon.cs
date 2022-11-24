@@ -11,37 +11,44 @@ public class Weapon : MonoBehaviour
     public float DelayBetweenShots;
     private bool IsReloading = false;
     public int Range;
-    public Transform MyHead;
     public float ReloadTime;
-
+    private bool CanShoot;
+    public bool IsAutomatic;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        CanShoot = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Shoot();
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-
-            StartCoroutine(Reload());
-        }
+        
     }
     
-
-    void Shoot()
+    bool CheckInput()
     {
-        if (Input.GetMouseButtonDown(0) && Ammo > 0 && IsReloading == false ) 
+        if (IsAutomatic == true)
+        {
+           return Input.GetMouseButton(0);
+        }
+        if (IsAutomatic == false)
+        {
+            return Input.GetMouseButtonDown(0);
+        }
+            return false;
+    }
+    public void Shoot(Transform MyHead)
+    {
+        if (CheckInput() && Ammo > 0 && IsReloading == false && CanShoot == true ) 
         {
             Ammo = Ammo - 1;
             Debug.Log("Left Click Pressed");
             Debug.DrawRay(MyHead.position, MyHead.forward * Range, Color.red, 5);
             RaycastHit HitData;
             Ray ray=Camera.main.ScreenPointToRay(Input.mousePosition);
+            StartCoroutine(DelayShot() );
             
 
             if (Physics.Raycast(ray, out HitData, Range))
@@ -53,7 +60,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    IEnumerator Reload()
+    public IEnumerator Reload()
     {
         if (!IsReloading && Ammo < ClipSize )
         {
@@ -65,6 +72,13 @@ public class Weapon : MonoBehaviour
 
         }
 
+    }
+
+    IEnumerator DelayShot()
+    {
+        CanShoot = false;
+        yield return new WaitForSeconds (DelayBetweenShots);
+        CanShoot = true;
     }
 
     void ResolveHittingEnemy(RaycastHit HitData, int Damage)
