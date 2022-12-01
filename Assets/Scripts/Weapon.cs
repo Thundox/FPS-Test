@@ -14,6 +14,8 @@ public class Weapon : MonoBehaviour
     public float ReloadTime;
     private bool CanShoot;
     public bool IsAutomatic;
+    public bool IsHeld;
+
 
     // Start is called before the first frame update
     void Start()
