@@ -20,6 +20,7 @@ public class ItemPickup : MonoBehaviour
         
     }
 
+    // Item Pickup Script
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Weapon"))
@@ -28,6 +29,7 @@ public class ItemPickup : MonoBehaviour
             {
                 other.transform.parent = PlayerWeaponHandler.MyHand;
                 other.transform.localPosition = Vector3.zero;
+                other.transform.localRotation = Quaternion.identity;
                 PlayerWeaponHandler.PlayerWeapon = other.GetComponent<Weapon>();
                 PlayerWeaponHandler.MyGunTransform = other.transform;
 
