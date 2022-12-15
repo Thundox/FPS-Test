@@ -15,6 +15,7 @@ public class Weapon : MonoBehaviour
     private bool CanShoot;
     public bool IsAutomatic;
     public bool IsHeld;
+    public LayerMask MyLayerMask;
 
 
     // Start is called before the first frame update
@@ -53,7 +54,7 @@ public class Weapon : MonoBehaviour
             StartCoroutine(DelayShot() );
             
 
-            if (Physics.Raycast(ray, out HitData, Range))
+            if (Physics.Raycast(ray, out HitData, Range, MyLayerMask))
             {
                 
                 ResolveHittingEnemy(HitData, Damage);

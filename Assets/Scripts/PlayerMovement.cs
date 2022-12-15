@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGrounded = false;
     float MovementHorizontal = 0;
     float MovementVertical = 0;
+    float RotateVertical = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -30,16 +31,18 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         float RotateHorizontal = Input.GetAxis("Mouse X");
-        float RotateVertical = Input.GetAxis("Mouse Y");
+        //RotateVertical = Input.GetAxis("Mouse Y");
         MovementHorizontal = Input.GetAxis("Horizontal");
         MovementVertical = Input.GetAxis("Vertical");
 
         // Camera left and right movement
         transform.RotateAround(PlayerGameObject.transform.position, Vector3.up, RotateHorizontal * Sensitivity);
         // Camera up and down movement
-        Head.transform.RotateAround(Head.transform.position, -transform.right, RotateVertical * Sensitivity);
+        //Head.transform.RotateAround(Head.transform.position, -transform.right, RotateVertical * Sensitivity);
+        RotateVertical += Input.GetAxis("Mouse Y") * -Sensitivity;
+        RotateVertical = Mathf.Clamp(RotateVertical, -90, 90);
+        Head.transform.localRotation = Quaternion.Euler(RotateVertical, Head.transform.rotation.y, 0);
 
-        
         Jump();
     }
 
