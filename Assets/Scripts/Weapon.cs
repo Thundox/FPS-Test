@@ -15,21 +15,19 @@ public class Weapon : MonoBehaviour
     private bool CanShoot;
     public bool IsAutomatic;
     public bool IsHeld;
+    public float RecoilVertical;
     public LayerMask MyLayerMask;
-
 
     // Start is called before the first frame update
     void Start()
     {
         CanShoot = true;
     }
-
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
-    
     bool CheckInput()
     {
         if (IsAutomatic == true)
@@ -42,8 +40,9 @@ public class Weapon : MonoBehaviour
         }
             return false;
     }
-    public void Shoot(Transform MyHead)
+    public float Shoot(Transform MyHead)
     {
+        // Check to see if we CAN shoot.
         if (CheckInput() && Ammo > 0 && IsReloading == false && CanShoot == true ) 
         {
             Ammo = Ammo - 1;
@@ -52,16 +51,16 @@ public class Weapon : MonoBehaviour
             RaycastHit HitData;
             Ray ray=Camera.main.ScreenPointToRay(Input.mousePosition);
             StartCoroutine(DelayShot() );
-            
-
-            if (Physics.Raycast(ray, out HitData, Range, MyLayerMask))
+            //Check to see if we hit an enemy
+           if (Physics.Raycast(ray, out HitData, Range, MyLayerMask))
             {
-                
                 ResolveHittingEnemy(HitData, Damage);
             }
-            
+            return RecoilVertical;
         }
+        return 0;
     }
+    
 
     public IEnumerator Reload()
     {
@@ -72,9 +71,7 @@ public class Weapon : MonoBehaviour
             Debug.Log("Finished Waiting");
             Ammo = ClipSize;
             IsReloading = false;
-
         }
-
     }
 
     IEnumerator DelayShot()

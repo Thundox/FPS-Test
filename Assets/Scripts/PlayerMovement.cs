@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // Handles Walking and camera movement.
     public GameObject PlayerGameObject;
     public GameObject Head;
     public float Sensitivity;
@@ -13,7 +14,8 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGrounded = false;
     float MovementHorizontal = 0;
     float MovementVertical = 0;
-    float RotateVertical = 0;
+    private float RotateVertical = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,9 +25,6 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Movement();
-
-
-
     }
     // Update is called once per frame
     void Update()
@@ -46,22 +45,24 @@ public class PlayerMovement : MonoBehaviour
         Jump();
     }
 
+    public float GetRotateVerticle()
+    {
+        return RotateVertical;
+    }
+  
     void Movement()
     {
-        
-        
             //RB.AddForce(transform.forward * Speed);
             // Forward and back movement
             RB.MovePosition(transform.position + (transform.forward * MovementVertical * Speed * Time.deltaTime) +
                 // Left and Right movement
                                                  (transform.right * MovementHorizontal * Speed * Time.deltaTime));
-
-        
-
     }
-
-
-
+    public void ApplyRecoil(float Recoil)
+    {
+        RotateVertical -= Recoil;
+        Recoil = 0;
+    }
     void Jump()
     {
         if (Input.GetKeyDown("space"))

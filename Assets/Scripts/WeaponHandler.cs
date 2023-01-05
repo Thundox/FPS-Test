@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class WeaponHandler : MonoBehaviour
 {
+    // Handles Inputs
     public Weapon PlayerWeapon;
     public Transform MyHead;
     public Transform MyHand;
     public float ThrowForce;
     public Transform MyGunTransform;
-
+    public PlayerMovement playerMovement;
 
     // Start is called before the first frame update
     void Start()
-    {
+    {        
         if (PlayerWeapon != null)
         {
            MyGunTransform = PlayerWeapon.transform;
@@ -27,17 +28,12 @@ public class WeaponHandler : MonoBehaviour
         DropWeapon();
         if (PlayerWeapon != null)
         {
-            PlayerWeapon.Shoot(MyHead);
+          playerMovement.ApplyRecoil(PlayerWeapon.Shoot(MyHead));
             if (Input.GetKeyDown(KeyCode.R))
             {
-
                 StartCoroutine(PlayerWeapon.Reload());
             }
         }
-
-        
-
-
     }
 
     void DropWeapon()
