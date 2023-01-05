@@ -58,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
                 // Left and Right movement
                                                  (transform.right * MovementHorizontal * Speed * Time.deltaTime));
     }
+    // Change to Ienumerator?
     public void ApplyRecoil(float Recoil)
     {
         RotateVertical -= Recoil;

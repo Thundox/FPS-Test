@@ -15,8 +15,11 @@ public class Weapon : MonoBehaviour
     private bool CanShoot;
     public bool IsAutomatic;
     public bool IsHeld;
+    // Recoil settings
     public float RecoilVertical;
+    public float RecoilDuration;
     public LayerMask MyLayerMask;
+    
 
     // Start is called before the first frame update
     void Start()
