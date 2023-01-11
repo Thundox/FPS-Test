@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    // Weapon settings
     public int Ammo;
     public int SpareAmmo;
     public int ClipSize;

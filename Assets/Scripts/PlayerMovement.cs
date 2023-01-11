@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Handles Walking and camera movement.
+    // Handles player movement and camera movement.
     public GameObject PlayerGameObject;
     public GameObject Head;
+    private Rigidbody RB;
     public float Sensitivity;
     public float Speed;
-    public float JumpHeight;
-    private Rigidbody RB;
-    private bool IsGrounded = false;
-    float MovementHorizontal = 0;
-    float MovementVertical = 0;
+    private float MovementHorizontal = 0;
+    private float MovementVertical = 0;
     private float RotateVertical = 0;
+    // Handles Jump behaviour
+    public float JumpHeight;
+    private bool IsGrounded = false;
 
 
     // Start is called before the first frame update

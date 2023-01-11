@@ -250,6 +250,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8418975687407806707, guid: 2bb32b4e39e86b14c9302880cd16b3ff, type: 3}
+      propertyPath: RecoilVertical
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418975687407806707, guid: 2bb32b4e39e86b14c9302880cd16b3ff, type: 3}
+      propertyPath: MyLayerMask.m_Bits
+      value: 129
+      objectReference: {fileID: 0}
     - target: {fileID: 8418975687407806711, guid: 2bb32b4e39e86b14c9302880cd16b3ff, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -912,6 +920,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2870748663163191073, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
+      propertyPath: RecoilVertical
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2870748663163191073, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
       propertyPath: MyLayerMask.m_Bits
       value: 129
       objectReference: {fileID: 0}
@@ -1121,6 +1133,18 @@ MonoBehaviour:
   MyHand: {fileID: 2002325763}
   ThrowForce: 10
   MyGunTransform: {fileID: 1856485943}
+  playerMovement: {fileID: 966074568}
+--- !u!114 &966074568 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6882251934361676904, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
+  m_PrefabInstance: {fileID: 707532581}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966074559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23372442507ed044f8c9fded11952c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1090447123
 GameObject:
   m_ObjectHideFlags: 0
@@ -1373,6 +1397,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2023365166816968163, guid: 75da18014af85dd4085688744f8936c7, type: 3}
+      propertyPath: RecoilVertical
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2023365166816968163, guid: 75da18014af85dd4085688744f8936c7, type: 3}
+      propertyPath: MyLayerMask.m_Bits
+      value: 129
+      objectReference: {fileID: 0}
     - target: {fileID: 2023365166816968167, guid: 75da18014af85dd4085688744f8936c7, type: 3}
       propertyPath: m_RootOrder
       value: 1

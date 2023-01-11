@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class WeaponHandler : MonoBehaviour
 {
-    // Handles Inputs
-    public Weapon PlayerWeapon;
+    // Handles Weapon Inputs
     public Transform MyHead;
     public Transform MyHand;
-    public float ThrowForce;
     public Transform MyGunTransform;
+    public Weapon PlayerWeapon;
+    public float ThrowForce;
     public PlayerMovement playerMovement;
 
     // Start is called before the first frame update
