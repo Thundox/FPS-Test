@@ -16,7 +16,9 @@ public class PlayerMovement : MonoBehaviour
     // Handles Jump behaviour
     public float JumpHeight;
     private bool IsGrounded = false;
-
+    public float recoilFraction;
+    public float MinimumRecoil;
+    public float CurrentRecoil;
 
     // Start is called before the first frame update
     void Start()
@@ -30,11 +32,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         float RotateHorizontal = Input.GetAxis("Mouse X");
         //RotateVertical = Input.GetAxis("Mouse Y");
         MovementHorizontal = Input.GetAxis("Horizontal");
         MovementVertical = Input.GetAxis("Vertical");
-
         // Camera left and right movement
         transform.RotateAround(PlayerGameObject.transform.position, Vector3.up, RotateHorizontal * Sensitivity);
         // Camera up and down movement
@@ -62,8 +64,19 @@ public class PlayerMovement : MonoBehaviour
     // Change to Ienumerator?
     public void ApplyRecoil(float Recoil)
     {
-        RotateVertical -= Recoil;
-        Recoil = 0;
+        if(Recoil > 0)
+        {
+            CurrentRecoil = Recoil;
+        }
+        if (CurrentRecoil < MinimumRecoil)          
+        {
+            CurrentRecoil = 0;
+            return;
+        }
+        Debug.Log("RecoilApplied");
+        RotateVertical -= CurrentRecoil * recoilFraction;
+        CurrentRecoil -= CurrentRecoil * recoilFraction;
+
     }
     void Jump()
     {
