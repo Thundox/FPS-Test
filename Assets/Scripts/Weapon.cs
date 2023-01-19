@@ -20,12 +20,13 @@ public class Weapon : MonoBehaviour
     public float RecoilVertical;
     public float RecoilDuration;
     public LayerMask MyLayerMask;
-    
+    private AudioSource myAudioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         CanShoot = true;
+        myAudioSource = GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update()
@@ -55,6 +56,7 @@ public class Weapon : MonoBehaviour
             RaycastHit HitData;
             Ray ray=Camera.main.ScreenPointToRay(Input.mousePosition);
             StartCoroutine(DelayShot() );
+            myAudioSource.Play();
             //Check to see if we hit an enemy
            if (Physics.Raycast(ray, out HitData, Range, MyLayerMask))
             {
