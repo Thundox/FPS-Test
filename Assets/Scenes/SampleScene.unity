@@ -920,16 +920,32 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2870748663163191073, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
+      propertyPath: Ammo
+      value: 9999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2870748663163191073, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
+      propertyPath: IsAutomatic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2870748663163191073, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
       propertyPath: RecoilVertical
-      value: 20
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2870748663163191073, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
+      propertyPath: DelayBetweenShots
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6882251934361676902, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6882251934361676904, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
+      propertyPath: RecoilSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882251934361676904, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
       propertyPath: MinimumRecoil
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6882251934361676904, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
       propertyPath: RecoilFraction
@@ -937,7 +953,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6882251934361676904, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
       propertyPath: recoilFraction
-      value: 0.08
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882251934361676904, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
+      propertyPath: MinimumRecoilPercent
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882251934361676904, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
+      propertyPath: RecoilRecoveryAmount
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882251934361676904, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
+      propertyPath: RecoilRecoverPerSecond
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882251934361676904, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
+      propertyPath: TotalRecoilRecoveryPercent
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6882251934361676907, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
       propertyPath: m_RootOrder
@@ -983,7 +1015,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 345091093, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
 --- !u!1 &892641472
 GameObject:

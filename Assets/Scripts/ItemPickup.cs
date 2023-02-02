@@ -27,6 +27,7 @@ public class ItemPickup : MonoBehaviour
         {
             if(PlayerWeaponHandler.PlayerWeapon == null)
             {
+                
                 other.transform.parent = PlayerWeaponHandler.MyHand;
                 other.transform.localPosition = Vector3.zero;
                 other.transform.localRotation = Quaternion.identity;

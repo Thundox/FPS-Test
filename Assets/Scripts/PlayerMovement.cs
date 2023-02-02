@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -16,9 +17,17 @@ public class PlayerMovement : MonoBehaviour
     // Handles Jump behaviour
     public float JumpHeight;
     private bool IsGrounded = false;
-    public float recoilFraction;
-    public float MinimumRecoil;
+    //Recoil
+    public float RecoilSpeed;
+    public float MinimumRecoilPercent;
     public float CurrentRecoil;
+
+    public float RecoilRecoverPerSecond = 10;
+    public float TotalRecoilRecoveryPercent = -0.5f; // Must Be a negative number.    
+    private float LastShotRecoil;
+    private float RecoilLeftToRecover;
+    private float RecoilLeftToApply;
+    private float MinimumRecoil;
 
     // Start is called before the first frame update
     void Start()
@@ -62,20 +71,47 @@ public class PlayerMovement : MonoBehaviour
                                                  (transform.right * MovementHorizontal * Speed * Time.deltaTime));
     }
     // Change to Ienumerator?
+
+   
     public void ApplyRecoil(float Recoil)
     {
         if(Recoil > 0)
         {
             CurrentRecoil = Recoil;
+            MinimumRecoil = CurrentRecoil * MinimumRecoilPercent;
+            Debug.Log("RecoilSet");
+            LastShotRecoil = Recoil;
+            RecoilLeftToRecover = LastShotRecoil * TotalRecoilRecoveryPercent;
+            RecoilLeftToApply = Recoil;
         }
+        
+        //Downwards recoil recovery.
         if (CurrentRecoil < MinimumRecoil)          
         {
+            RecoilLeftToApply = 0;
             CurrentRecoil = 0;
-            return;
+            RecoilLeftToRecover -= RecoilRecoverPerSecond * RecoilSpeed * Time.deltaTime;
+            //return;
+            if (RecoilLeftToRecover <= 0)
+            {
+                
+                RecoilLeftToRecover = 0;
+                CurrentRecoil = 0;
+                return;
+            }
+            RotateVertical += RecoilRecoverPerSecond * RecoilSpeed * Time.deltaTime;
+ 
         }
-        Debug.Log("RecoilApplied");
-        RotateVertical -= CurrentRecoil * recoilFraction;
-        CurrentRecoil -= CurrentRecoil * recoilFraction;
+
+        //Upwards Recoil
+        else if(RecoilLeftToApply > 0)
+        {
+            Debug.Log("Recoil Applied");
+            RecoilLeftToApply -= CurrentRecoil * RecoilSpeed * Time.deltaTime;
+            RotateVertical -= CurrentRecoil * RecoilSpeed * Time.deltaTime;
+            CurrentRecoil -= CurrentRecoil * RecoilSpeed * Time.deltaTime;
+        }
+
 
     }
     void Jump()

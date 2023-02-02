@@ -18,7 +18,6 @@ public class Weapon : MonoBehaviour
     public bool IsHeld;
     // Recoil settings
     public float RecoilVertical;
-    public float RecoilDuration;
     public LayerMask MyLayerMask;
     private AudioSource myAudioSource;
 
