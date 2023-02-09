@@ -43,7 +43,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Movement();
+        IceSkatingMovement();
+        //Movement();
     }
     // Update is called once per frame
     void Update()
@@ -71,6 +72,20 @@ public class PlayerMovement : MonoBehaviour
   
     void Movement()
     {
+
+        RB.velocity = Vector3.ClampMagnitude(RB.velocity, maxSpeed);
+
+        RB.AddForce(transform.forward * Speed);
+        //Forward and back movement
+
+        RB.MovePosition(transform.position + (transform.forward * MovementVertical * Speed * Time.deltaTime) +
+         //Left and Right movement
+         (transform.right * MovementHorizontal * Speed * Time.deltaTime));
+    }
+    // Change to Ienumerator?
+
+    void IceSkatingMovement()
+    {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
@@ -79,16 +94,7 @@ public class PlayerMovement : MonoBehaviour
 
         RB.AddForce(transform.forward * vertical * Speed, ForceMode.Force);
         RB.AddForce(transform.right * horizontal * Speed, ForceMode.Force);
-        //RB.velocity = Vector3.ClampMagnitude(RB.velocity, maxSpeed);
-
-        //RB.AddForce(transform.forward * Speed);
-        // Forward and back movement
-
-        //RB.MovePosition(transform.position + (transform.forward * MovementVertical * Speed * Time.deltaTime) +
-        // Left and Right movement
-        // (transform.right * MovementHorizontal * Speed * Time.deltaTime));
     }
-    // Change to Ienumerator?
 
    
     public void ApplyRecoil(float Recoil)

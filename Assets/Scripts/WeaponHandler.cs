@@ -44,15 +44,17 @@ public class WeaponHandler : MonoBehaviour
             {
                 MyGunTransform.GetComponent<Rigidbody>().isKinematic = false;
                 MyGunTransform.GetComponent<BoxCollider>().enabled = true;
+                MyGunTransform.gameObject.layer = 8;
                 PlayerWeapon=null;
                 MyGunTransform=null;
+                
                 // Broken need to change how player movement velocity works
                 //MyHand.GetChild(0).GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity;
                 MyHand.GetChild(0).GetComponent<Rigidbody>().AddForce(MyHead.transform.forward * ThrowForce,ForceMode.Impulse);
                 MyHand.DetachChildren();
 
                 
-                
+
             }
         }
     }

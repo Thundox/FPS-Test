@@ -36,6 +36,8 @@ public class ItemPickup : MonoBehaviour
 
                 other.GetComponent<Rigidbody>().isKinematic = true;
                 other.GetComponent<BoxCollider>().enabled = false;
+
+                other.gameObject.layer = 9;
             }
         }
     }

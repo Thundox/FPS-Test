@@ -55,7 +55,12 @@ public class Weapon : MonoBehaviour
             RaycastHit HitData;
             Ray ray=Camera.main.ScreenPointToRay(Input.mousePosition);
             StartCoroutine(DelayShot() );
-            myAudioSource.Play();
+            if (myAudioSource != null)
+            {
+                myAudioSource.Play();
+            }
+            else
+                Debug.Log(this.name + " Gun is Missing sound!!!");
             //Check to see if we hit an enemy
            if (Physics.Raycast(ray, out HitData, Range, MyLayerMask))
             {
