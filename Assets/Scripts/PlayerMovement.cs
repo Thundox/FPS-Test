@@ -29,9 +29,16 @@ public class PlayerMovement : MonoBehaviour
     private float RecoilLeftToApply;
     private float MinimumRecoil;
 
+    public Vector3 MyVelocity;
+    private Transform playerTransform;
+
+    public float acceleration = 10.0f;
+    public float maxSpeed = 10.0f;
+
     // Start is called before the first frame update
     void Start()
     {
+        playerTransform = transform;
         RB = GetComponent<Rigidbody>();
     }
     private void FixedUpdate()
@@ -41,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        MyVelocity = RB.velocity;
         float RotateHorizontal = Input.GetAxis("Mouse X");
         //RotateVertical = Input.GetAxis("Mouse Y");
         MovementHorizontal = Input.GetAxis("Horizontal");
@@ -64,11 +71,22 @@ public class PlayerMovement : MonoBehaviour
   
     void Movement()
     {
-            //RB.AddForce(transform.forward * Speed);
-            // Forward and back movement
-            RB.MovePosition(transform.position + (transform.forward * MovementVertical * Speed * Time.deltaTime) +
-                // Left and Right movement
-                                                 (transform.right * MovementHorizontal * Speed * Time.deltaTime));
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        Vector3 direction = new Vector3(horizontal, RB.velocity.y, vertical);
+        direction = playerTransform.TransformDirection(direction);
+
+        RB.AddForce(transform.forward * vertical * Speed, ForceMode.Force);
+        RB.AddForce(transform.right * horizontal * Speed, ForceMode.Force);
+        //RB.velocity = Vector3.ClampMagnitude(RB.velocity, maxSpeed);
+
+        //RB.AddForce(transform.forward * Speed);
+        // Forward and back movement
+
+        //RB.MovePosition(transform.position + (transform.forward * MovementVertical * Speed * Time.deltaTime) +
+        // Left and Right movement
+        // (transform.right * MovementHorizontal * Speed * Time.deltaTime));
     }
     // Change to Ienumerator?
 
