@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private float RotateVertical = 0;
     // Handles Jump behaviour
     public float JumpHeight;
+    public float BoostStrength;
     private bool IsGrounded = false;
     //Recoil
     public float RecoilSpeed;
@@ -32,8 +33,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 MyVelocity;
     private Transform playerTransform;
 
-    public float acceleration = 10.0f;
-    public float maxSpeed = 10.0f;
+    // Old
+    //public float maxSpeed = 10.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         Head.transform.localRotation = Quaternion.Euler(RotateVertical, Head.transform.rotation.y, 0);
 
         Jump();
+        Boost();
     }
 
     public float GetRotateVerticle()
@@ -70,18 +72,18 @@ public class PlayerMovement : MonoBehaviour
         return RotateVertical;
     }
   
-    void Movement()
-    {
+    //void Movement()
+    //{
 
-        RB.velocity = Vector3.ClampMagnitude(RB.velocity, maxSpeed);
+    //    RB.velocity = Vector3.ClampMagnitude(RB.velocity, maxSpeed);
 
-        RB.AddForce(transform.forward * Speed);
-        //Forward and back movement
+    //    RB.AddForce(transform.forward * Speed);
+    //    //Forward and back movement
 
-        RB.MovePosition(transform.position + (transform.forward * MovementVertical * Speed * Time.deltaTime) +
-         //Left and Right movement
-         (transform.right * MovementHorizontal * Speed * Time.deltaTime));
-    }
+    //    RB.MovePosition(transform.position + (transform.forward * MovementVertical * Speed * Time.deltaTime) +
+    //     //Left and Right movement
+    //     (transform.right * MovementHorizontal * Speed * Time.deltaTime));
+    //}
     // Change to Ienumerator?
 
     void IceSkatingMovement()
@@ -96,6 +98,26 @@ public class PlayerMovement : MonoBehaviour
         RB.AddForce(transform.right * horizontal * Speed, ForceMode.Force);
     }
 
+    void Boost()
+    {
+        if (Input.GetKeyDown (KeyCode.E))
+        {
+           Debug.Log("e is pressed");
+           var LocalVelocity = transform.InverseTransformDirection(RB.velocity);
+           if (LocalVelocity.x < 0)
+            {
+                LocalVelocity.x = LocalVelocity.x * -1;
+                RB.velocity = transform.TransformDirection(LocalVelocity);
+
+            }
+           else
+            {
+                RB.AddForce(transform.right * BoostStrength, ForceMode.Impulse);
+            }
+           
+        }
+
+    }
    
     public void ApplyRecoil(float Recoil)
     {
