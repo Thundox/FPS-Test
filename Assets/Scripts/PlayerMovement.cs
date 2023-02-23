@@ -16,13 +16,11 @@ public class PlayerMovement : MonoBehaviour
     private float RotateVertical = 0;
     // Handles Jump behaviour
     public float JumpHeight;
-    public float BoostStrength;
     private bool IsGrounded = false;
     //Recoil
     public float RecoilSpeed;
     public float MinimumRecoilPercent;
     public float CurrentRecoil;
-
     public float RecoilRecoverPerSecond = 10;
     public float TotalRecoilRecoveryPercent = -0.5f; // Must Be a negative number.    
     private float LastShotRecoil;
@@ -32,6 +30,11 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 MyVelocity;
     private Transform playerTransform;
+
+    // Boost Variables
+    public float BoostStrength;
+    public int BoostCharges;
+    public float BoostRechargeTime;
 
     // Old
     //public float maxSpeed = 10.0f;
@@ -100,25 +103,47 @@ public class PlayerMovement : MonoBehaviour
 
     void Boost()
     {
-        if (Input.GetKeyDown (KeyCode.E))
+        if (Input.GetKeyDown (KeyCode.E) && BoostCharges > 0)
         {
+           BoostCharges = BoostCharges - 1;
            Debug.Log("e is pressed");
            var LocalVelocity = transform.InverseTransformDirection(RB.velocity);
-           if (LocalVelocity.x < 0)
+           if (LocalVelocity.x < -BoostStrength)
             {
                 LocalVelocity.x = LocalVelocity.x * -1;
                 RB.velocity = transform.TransformDirection(LocalVelocity);
 
             }
-           else
+           else if (LocalVelocity.x > -BoostStrength && LocalVelocity.x < 0)
+            {
+                LocalVelocity.x = BoostStrength;
+                RB.velocity = transform.TransformDirection(LocalVelocity);
+            }
+            else
             {
                 RB.AddForce(transform.right * BoostStrength, ForceMode.Impulse);
             }
-           
+            if (BoostCharges < 1)
+            {
+                StartCoroutine(BoostRecharge()); 
+            }
         }
 
     }
-   
+
+    public IEnumerator BoostRecharge()
+    {      
+            yield return new WaitForSeconds(BoostRechargeTime);
+        if (BoostCharges <= 0)
+        {
+            Debug.Log("Boosts before recharge: " + BoostCharges);
+            BoostCharges = BoostCharges +1;
+            Debug.Log("Boosts after recharge: " + BoostCharges);
+        }
+            
+            
+    }
+
     public void ApplyRecoil(float Recoil)
     {
         if(Recoil > 0)
