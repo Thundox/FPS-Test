@@ -129,6 +129,32 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.Q) && BoostCharges > 0)
+        {
+            BoostCharges = BoostCharges - 1;
+            Debug.Log("Q is pressed");
+            var LocalVelocity = transform.InverseTransformDirection(RB.velocity);
+            if (LocalVelocity.x < -BoostStrength)
+            {
+                LocalVelocity.x = LocalVelocity.x * +1;
+                RB.velocity = transform.TransformDirection(LocalVelocity);
+
+            }
+            else if (LocalVelocity.x > -BoostStrength && LocalVelocity.x < 0)
+            {
+                LocalVelocity.x = BoostStrength;
+                RB.velocity = transform.TransformDirection(LocalVelocity);
+            }
+            else
+            {
+                RB.AddForce(transform.right * -BoostStrength, ForceMode.Impulse);
+            }
+            if (BoostCharges < 1)
+            {
+                StartCoroutine(BoostRecharge());
+            }
+        }
+
     }
 
     public IEnumerator BoostRecharge()
