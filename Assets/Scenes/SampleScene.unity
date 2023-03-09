@@ -1114,13 +1114,17 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6882251934361676903, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
+      propertyPath: m_Interpolate
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6882251934361676904, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
       propertyPath: RecoilSpeed
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6882251934361676904, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
       propertyPath: BoostCharges
-      value: 3
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 6882251934361676904, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
       propertyPath: BoostStrength

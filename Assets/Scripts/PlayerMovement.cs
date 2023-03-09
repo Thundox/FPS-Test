@@ -134,17 +134,20 @@ public class PlayerMovement : MonoBehaviour
             BoostCharges = BoostCharges - 1;
             Debug.Log("Q is pressed");
             var LocalVelocity = transform.InverseTransformDirection(RB.velocity);
-            if (LocalVelocity.x < -BoostStrength)
+            // If player is travelling fast right swap speed to left
+            if (LocalVelocity.x > BoostStrength)
             {
-                LocalVelocity.x = LocalVelocity.x * +1;
+                LocalVelocity.x = LocalVelocity.x * -1;
                 RB.velocity = transform.TransformDirection(LocalVelocity);
 
             }
-            else if (LocalVelocity.x > -BoostStrength && LocalVelocity.x < 0)
+            // If player is going right slower than boost strength
+            else if (LocalVelocity.x < BoostStrength && LocalVelocity.x > 0)
             {
-                LocalVelocity.x = BoostStrength;
+                LocalVelocity.x = -BoostStrength;
                 RB.velocity = transform.TransformDirection(LocalVelocity);
             }
+            // If player is standing still or going faster than boost strength
             else
             {
                 RB.AddForce(transform.right * -BoostStrength, ForceMode.Impulse);
