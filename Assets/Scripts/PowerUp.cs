@@ -11,7 +11,7 @@ public class PowerUp : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<PlayerMovement>().BoostCharges += 1;
+            other.GetComponent<PlayerMovement>().BoostCharges += BoostRechargeAmount;
             if (DoesRespawn == false)
             {
                 this.transform.GetChild(0).gameObject.SetActive(false);
