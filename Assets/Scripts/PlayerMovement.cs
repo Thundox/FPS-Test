@@ -232,6 +232,23 @@ public class PlayerMovement : MonoBehaviour
         {
             IsGrounded = true;
         }
+
+        {
+    float bounceForce = 10f;
+
+    
+    
+        if (collision.gameObject.CompareTag("Trap"))
+        {
+            // calculate the bounce direction
+            Vector3 bounceDirection = Vector3.Reflect(RB.velocity.normalized, collision.contacts[0].normal);
+
+            // apply the bounce force
+            RB.AddForce(bounceDirection * bounceForce, ForceMode.Impulse);
+        }
+    
+}
+
     }
 
     private void OnCollisionExit(Collision collision)
@@ -241,4 +258,6 @@ public class PlayerMovement : MonoBehaviour
             IsGrounded = false;
         }
     }
+
+
 }
