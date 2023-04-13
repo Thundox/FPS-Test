@@ -36,6 +36,9 @@ public class PlayerMovement : MonoBehaviour
     public int BoostCharges;
     public float BoostRechargeTime;
 
+    //Player Coin Variables
+    public int CoinsCollected;
+
     // Old
     //public float maxSpeed = 10.0f;
 
@@ -257,6 +260,23 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             IsGrounded = false;
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            IsGrounded = true;
+        }
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("Coin"))
+        {
+            CoinsCollected += 1;
+            collision.gameObject.SetActive(false);
         }
     }
 
