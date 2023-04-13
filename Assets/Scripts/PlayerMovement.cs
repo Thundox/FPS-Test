@@ -276,7 +276,8 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Coin"))
         {
             CoinsCollected += 1;
-            collision.gameObject.SetActive(false);
+            collision.gameObject.GetComponent<AudioSource>().Play();
+            collision.transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 

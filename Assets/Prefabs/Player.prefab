@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 345091092}
   - component: {fileID: 345091094}
-  - component: {fileID: 345091093}
   m_Layer: 0
   m_Name: Gun Camera
   m_TagString: Untagged
@@ -76,14 +75,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &345091093
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345091091}
-  m_Enabled: 1
 --- !u!1 &4993582830818720095
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +395,7 @@ MonoBehaviour:
   BoostStrength: 20
   BoostCharges: 3
   BoostRechargeTime: 3
+  CoinsCollected: 0
 --- !u!114 &966074567
 MonoBehaviour:
   m_ObjectHideFlags: 0
