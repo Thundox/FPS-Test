@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -22,9 +23,18 @@ public class PlayerHealth : MonoBehaviour
         Health = MaxHealth;
     }
 
-    private void ResolveTrap(Collision Trap)
+    public void ResolveDamage(Collision harmfulObject)
     {
-        Health -= Trap.gameObject.GetComponent<Trap>().Damage;
+        if(harmfulObject.gameObject.CompareTag("Trap"))
+        {
+            Health -= harmfulObject.gameObject.GetComponent<Trap>().Damage;
+        }
+
+        else if(harmfulObject.gameObject.CompareTag("Projectile"))
+        {
+            Health -= harmfulObject.gameObject.GetComponent<Projectile>().damage;
+            Destroy(harmfulObject.gameObject);
+        }
         if (Health <= 0)
         {
             Respawn();
@@ -33,12 +43,15 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Health was reduced to: " + Health);
     }
 
-    private void OnCollisionEnter(Collision collision)
+
+    public void OnCollisionEnter(Collision collision)
     {
+        ResolveDamage(collision);
         if (collision.gameObject.tag == "Trap")
         {
-            ResolveTrap(collision);
+            ResolveDamage(collision);
         }
         
     }
+
 }

@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    float speed = 10;
+    public float speed = 10;
+    public int damage = 10;
     Rigidbody rb;
     Vector3 Velocity;
     private void Start()
@@ -18,4 +19,6 @@ public class Projectile : MonoBehaviour
         Velocity = transform.forward * speed;
         rb.velocity = Velocity;
     }
+
+
 }
