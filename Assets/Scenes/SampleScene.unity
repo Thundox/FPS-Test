@@ -2437,7 +2437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1916826718
 Transform:
   m_ObjectHideFlags: 0
@@ -2581,9 +2581,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MyState: 0
   DelayBeforeShooting: 2
-  Counter: 0
+  timeLeft: 3
+  turnRate: 5
   MyLineRenderer: {fileID: 1916826719}
   DamageObject: {fileID: 7437902131556844687, guid: 6909a88d1a08d2d4fbdedfd5a3509c46, type: 3}
+  PlayerPosition: {x: 0, y: 0, z: 0}
+  countDown: 0
 --- !u!1 &1953696521
 GameObject:
   m_ObjectHideFlags: 0
@@ -3015,6 +3018,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1183597513, guid: e5973dc8758e1024fa8910acd46b615c, type: 3}
+      propertyPath: turnRate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1183597513, guid: e5973dc8758e1024fa8910acd46b615c, type: 3}
+      propertyPath: PlayerToShoot
+      value: 
+      objectReference: {fileID: 962546610}
     - target: {fileID: 6915647612090139321, guid: e5973dc8758e1024fa8910acd46b615c, type: 3}
       propertyPath: m_Name
       value: EnemyStationaryTest
@@ -3025,7 +3036,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6915647612090139325, guid: e5973dc8758e1024fa8910acd46b615c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.465002
+      value: -19.37
       objectReference: {fileID: 0}
     - target: {fileID: 6915647612090139325, guid: e5973dc8758e1024fa8910acd46b615c, type: 3}
       propertyPath: m_LocalPosition.y

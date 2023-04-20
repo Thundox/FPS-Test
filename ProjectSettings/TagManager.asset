@@ -9,6 +9,7 @@ TagManager:
   - Weapon
   - Trap
   - Coin
+  - Projectile
   layers:
   - Default
   - TransparentFX
