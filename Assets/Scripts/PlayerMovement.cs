@@ -38,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
 
     //Player Coin Variables
     public int CoinsCollected;
+    public Coin_Manager coin_Manager;
+    
 
     // Old
     //public float maxSpeed = 10.0f;
@@ -276,8 +278,10 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Coin"))
         {
             CoinsCollected += 1;
-            collision.gameObject.GetComponent<AudioSource>().Play();
-            collision.transform.GetChild(0).gameObject.SetActive(false);
+            coin_Manager.Coins += 1;
+            coin_Manager.CoinsGUI.text = coin_Manager.Coins.ToString();
+            collision.gameObject.GetComponentInParent<AudioSource>().Play();
+            collision.gameObject.SetActive(false);
         }
     }
 
