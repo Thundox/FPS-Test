@@ -12,8 +12,15 @@ public class Turret : MonoBehaviour
     public LineRenderer MyLineRenderer;
     public GameObject DamageObject;
     public Vector3 PlayerPosition;
-    public bool countDown;
+    public float timeToShoot = 3;
+    public GameObject PlayerToShoot;
+    public bool countDown = true;
 
+
+    private void Start()
+    {
+        timeLeft = timeToShoot;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
@@ -29,6 +36,7 @@ public class Turret : MonoBehaviour
         {
             PlayerPosition = new Vector3(0,0,0);
             MyState = 0; // Set state to Idle
+            timeLeft = timeToShoot;
         }
     }
 
@@ -52,10 +60,14 @@ public class Turret : MonoBehaviour
                 {
                     MyState = 2;
                     timeLeft = 3;
+                    timeLeft = timeToShoot;
                 }
             }
                 MyLineRenderer.enabled= true;
-            Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(PlayerPosition), Time.deltaTime * turnRate);
+
+            Vector3 direction = PlayerToShoot.transform.position - transform.position;
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnRate * Time.deltaTime);
         }
         if(MyState == 2) // Shoot
         {
