@@ -278,8 +278,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Coin"))
         {
             CoinsCollected += 1;
-            coin_Manager.Coins += 1;
-            coin_Manager.CoinsGUI.text = coin_Manager.Coins.ToString();
+            coin_Manager.CoinCollected();
             collision.gameObject.GetComponentInParent<AudioSource>().Play();
             collision.gameObject.SetActive(false);
         }
