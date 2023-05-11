@@ -265,9 +265,10 @@ GameObject:
   - component: {fileID: 6882251934361676904}
   - component: {fileID: 966074567}
   - component: {fileID: 2181495077363328894}
+  - component: {fileID: 8529541144641889438}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -396,6 +397,7 @@ MonoBehaviour:
   BoostCharges: 3
   BoostRechargeTime: 3
   CoinsCollected: 0
+  coin_Manager: {fileID: 0}
 --- !u!114 &966074567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,6 +428,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039892a6ad8dca341bbb5b767d5d3494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8529541144641889438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6882251934361676902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa600b3849f44844afc1cdfddfeb6f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
+  RespawnPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &6882251934640674023
 GameObject:
   m_ObjectHideFlags: 0
