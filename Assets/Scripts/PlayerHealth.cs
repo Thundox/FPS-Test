@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int Health;
+    [SerializeField]
+    private int Health;
     private int MaxHealth;
     public Vector3 RespawnPoint;
 
@@ -16,10 +17,19 @@ public class PlayerHealth : MonoBehaviour
         MaxHealth = Health;
     }
 
-    void Respawn()
+   public void Respawn()
     {
         transform.position = RespawnPoint;
         Health = MaxHealth;
+    }
+
+    public void ChangeHealth(int ChangeHealthBy)
+    {
+        Health = Health + ChangeHealthBy;
+        if(Health <= 0)
+        {
+            Respawn();
+        }
     }
 
     private void ResolveTrap(Collision Trap)

@@ -21,7 +21,7 @@ public class Turret : MonoBehaviour
     {
         timeLeft = timeToShoot;
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) // Player enters targeting range, begin targeting.
     {
         if(other.tag == "Player")
         {
@@ -30,7 +30,7 @@ public class Turret : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other) // Player leaves range go back to idle
     {
         if(other.tag == "Player")
         {
@@ -41,10 +41,6 @@ public class Turret : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-
-    }
 
     private void Update()
     {
@@ -52,7 +48,7 @@ public class Turret : MonoBehaviour
         {
             MyLineRenderer.enabled= false;
         }
-        if(MyState == 1) // Target
+        if(MyState == 1) // Targeting
         {
             if (countDown)
             {
@@ -60,7 +56,6 @@ public class Turret : MonoBehaviour
                 if(timeLeft <= 0)
                 {
                     MyState = 2;
-                    timeLeft = 3;
                     timeLeft = timeToShoot;
                 }
             }

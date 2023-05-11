@@ -32,7 +32,7 @@ public class Projectile : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<PlayerHealth>().Health -= damage;
+            other.GetComponent<PlayerHealth>().ChangeHealth(-damage);
             Destroy(gameObject);
         }
     }

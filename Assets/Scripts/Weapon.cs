@@ -97,6 +97,7 @@ public class Weapon : MonoBehaviour
         {
             if (HitData.transform.GetComponent <Enemy>().IsEnemyDead(Damage))
             {
+                
                 HitData.transform.gameObject.SetActive(false);
             }
             
