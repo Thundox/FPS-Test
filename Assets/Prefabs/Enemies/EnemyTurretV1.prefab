@@ -281,4 +281,4 @@ MonoBehaviour:
   PlayerPosition: {x: 0, y: 0, z: 0}
   timeToShoot: 3
   PlayerToShoot: {fileID: 0}
-  countDown: 0
+  countDown: 1

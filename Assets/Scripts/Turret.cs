@@ -34,6 +34,7 @@ public class Turret : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            PlayerToShoot = other.gameObject;
             PlayerPosition = new Vector3(0,0,0);
             MyState = 0; // Set state to Idle
             timeLeft = timeToShoot;

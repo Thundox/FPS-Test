@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    float speed = 10;
+    public float lifetime = 5f;
+    public int damage = 1;
+    public float speed = 10;
     Rigidbody rb;
     Vector3 Velocity;
     private void Start()
