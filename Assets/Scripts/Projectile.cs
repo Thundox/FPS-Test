@@ -14,10 +14,26 @@ public class Projectile : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         Velocity = transform.forward * speed;
+        StartCoroutine(DestroyAfterTime());
     }
     private void Update()
     {
         Velocity = transform.forward * speed;
         rb.velocity = Velocity;
+    }
+   
+    IEnumerator DestroyAfterTime()
+    {
+        yield return new WaitForSeconds(lifetime);
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            other.GetComponent<PlayerHealth>().Health -= damage;
+            Destroy(gameObject);
+        }
     }
 }
