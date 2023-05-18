@@ -97,10 +97,12 @@ public class Weapon : MonoBehaviour
         {
             if (HitData.transform.GetComponent<Turret>().MyState != 0)
             {
+                Debug.Log("Enemy Hit");
                 if (HitData.transform.GetComponent<Enemy>().DamageThenCheckEnemyDead(Damage))
                 {
 
                     HitData.transform.gameObject.SetActive(false);
+                    
                 }
             }
             
