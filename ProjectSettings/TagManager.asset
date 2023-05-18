@@ -10,6 +10,7 @@ TagManager:
   - Trap
   - Coin
   - Projectile
+  - Turret
   layers:
   - Default
   - TransparentFX

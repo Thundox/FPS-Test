@@ -93,9 +93,22 @@ public class Weapon : MonoBehaviour
 
     void ResolveHittingEnemy(RaycastHit HitData, int Damage)
     {
-        if (HitData.transform.tag == "Enemy")
+        if (HitData.transform.tag == "Turret")
         {
-            if (HitData.transform.GetComponent <Enemy>().IsEnemyDead(Damage))
+            if (HitData.transform.GetComponent<Turret>().MyState != 0)
+            {
+                if (HitData.transform.GetComponent<Enemy>().DamageThenCheckEnemyDead(Damage))
+                {
+
+                    HitData.transform.gameObject.SetActive(false);
+                }
+            }
+            
+        }
+        if (HitData.transform.tag == "Enemy")
+            
+            {
+            if (HitData.transform.GetComponent <Enemy>().DamageThenCheckEnemyDead(Damage))
             {
                 
                 HitData.transform.gameObject.SetActive(false);

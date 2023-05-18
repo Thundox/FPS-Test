@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     {
         
     }
-    public bool IsEnemyDead (int Damage)
+    public bool DamageThenCheckEnemyDead (int Damage)
     {
         Health -= Damage;
         if (Health <= 0)
