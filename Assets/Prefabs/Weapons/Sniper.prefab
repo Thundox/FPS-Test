@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8418975687407806706}
   - component: {fileID: 8418975687407806707}
   - component: {fileID: 8418975687407806716}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sniper
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -120,6 +120,10 @@ MonoBehaviour:
   ReloadTime: 5
   IsAutomatic: 0
   IsHeld: 0
+  RecoilVertical: 0
+  MyLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!54 &8418975687407806716
 Rigidbody:
   m_ObjectHideFlags: 0
