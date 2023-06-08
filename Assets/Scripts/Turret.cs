@@ -15,7 +15,7 @@ public class Turret : MonoBehaviour
     public float timeToShoot = 3;
     public GameObject PlayerToShoot;
     public bool countDown = true;
-
+    public GameObject ParentToRotate;
 
     private void Start()
     {
@@ -63,7 +63,13 @@ public class Turret : MonoBehaviour
 
             Vector3 direction = PlayerToShoot.transform.position - transform.position;
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnRate * Time.deltaTime);
+            if (ParentToRotate != null)
+            {
+                ParentToRotate.transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnRate * Time.deltaTime);
+            }
+            else
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnRate * Time.deltaTime);
+
         }
         if(MyState == 2) // Shoot
         {
