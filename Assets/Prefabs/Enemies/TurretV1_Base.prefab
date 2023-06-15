@@ -510,7 +510,7 @@ MonoBehaviour:
   DelayBeforeShooting: 2
   timeLeft: 3
   turnRate: 20
-  MyLineRenderer: {fileID: 0}
+  MyLineRenderer: {fileID: 1668324781215265446}
   DamageObject: {fileID: 7437902131556844687, guid: 6909a88d1a08d2d4fbdedfd5a3509c46, type: 3}
   PlayerPosition: {x: 0, y: 0, z: 0}
   timeToShoot: 3
