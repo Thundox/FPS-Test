@@ -98,10 +98,11 @@ public class Weapon : MonoBehaviour
             if (HitData.transform.GetComponent<Turret>().MyState != 0)
             {
                 Debug.Log("Enemy Hit");
-                if (HitData.transform.GetComponent<Enemy>().DamageThenCheckEnemyDead(Damage))
+                GameObject Turret = HitData.transform.GetComponentInParent<Enemy>().gameObject;
+                if (HitData.transform.GetComponentInParent<Enemy>().DamageThenCheckEnemyDead(Damage))
                 {
 
-                    HitData.transform.gameObject.SetActive(false);
+                    Turret.SetActive(false);
                     
                 }
             }
