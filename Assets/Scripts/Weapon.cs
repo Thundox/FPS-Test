@@ -21,6 +21,8 @@ public class Weapon : MonoBehaviour
     public LayerMask MyLayerMask;
     private AudioSource myAudioSource;
 
+    public GameObject Turret;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -95,13 +97,16 @@ public class Weapon : MonoBehaviour
     {
         if (HitData.transform.tag == "Turret")
         {
-            if (HitData.transform.GetComponent<Turret>().MyState != 0)
+            Turret = HitData.transform.GetComponentInParent<Enemy>().gameObject;
+            if (HitData.transform.GetComponentInParent<Turret>().MyState != 0)
             {
                 Debug.Log("Enemy Hit");
-                if (HitData.transform.GetComponent<Enemy>().DamageThenCheckEnemyDead(Damage))
+                Turret = HitData.transform.GetComponentInParent<Enemy>().gameObject;
+                
+                if (HitData.transform.GetComponentInParent<Enemy>().DamageThenCheckEnemyDead(Damage))
                 {
 
-                    HitData.transform.gameObject.SetActive(false);
+                    Turret.SetActive(false);
                     
                 }
             }
