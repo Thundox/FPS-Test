@@ -37,6 +37,9 @@ public class PlayerMovement : MonoBehaviour
     public int BoostCharges;
     public float BoostRechargeTime;
 
+    // UI
+    public UI_Manager MyUI_Manager;
+
     //Player Coin Variables
     public int CoinsCollected;
     public Coin_Manager coin_Manager;
@@ -113,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown (KeyCode.E) && BoostCharges > 0)
         {
            BoostCharges = BoostCharges - 1;
+            MyUI_Manager.SetBoost(BoostCharges);
            Debug.Log("e is pressed");
            var LocalVelocity = transform.InverseTransformDirection(RB.velocity);
            if (LocalVelocity.x < -BoostStrength)
@@ -139,6 +143,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && BoostCharges > 0)
         {
             BoostCharges = BoostCharges - 1;
+            MyUI_Manager.SetBoost(BoostCharges);
             Debug.Log("Q is pressed");
             var LocalVelocity = transform.InverseTransformDirection(RB.velocity);
             // If player is travelling fast right swap speed to left
@@ -174,6 +179,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("Boosts before recharge: " + BoostCharges);
             BoostCharges = BoostCharges +1;
+            MyUI_Manager.SetBoost(BoostCharges);
             Debug.Log("Boosts after recharge: " + BoostCharges);
         }
             
@@ -229,15 +235,17 @@ public class PlayerMovement : MonoBehaviour
             if (IsGrounded == true)
             {
                 RB.AddForce(transform.up * JumpHeight, ForceMode.Impulse);
+                if (myAudioSource != null)
+                {
+                    Debug.Log("sound should play");
+                    myAudioSource.Play();
+                }
+                else
+                    Debug.Log("No jump sound set");
             }
             
         }
-        if (myAudioSource != null)
-        {
-            myAudioSource.Play();
-        }
-        else
-            Debug.Log ("No jump sound set");
+        
 
     }
     private void OnCollisionEnter(Collision collision)
