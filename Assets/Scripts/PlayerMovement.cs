@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     // Handles Jump behaviour
     public float JumpHeight;
     private bool IsGrounded = false;
+    public AudioSource myAudioSource;
     //Recoil
     public float RecoilSpeed;
     public float MinimumRecoilPercent;
@@ -49,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
     {
         playerTransform = transform;
         RB = GetComponent<Rigidbody>();
+        myAudioSource = GetComponent<AudioSource>();
     }
     private void FixedUpdate()
     {
@@ -230,6 +232,13 @@ public class PlayerMovement : MonoBehaviour
             }
             
         }
+        if (myAudioSource != null)
+        {
+            myAudioSource.Play();
+        }
+        else
+            Debug.Log ("No jump sound set");
+
     }
     private void OnCollisionEnter(Collision collision)
     {
