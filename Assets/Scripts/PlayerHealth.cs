@@ -9,23 +9,29 @@ public class PlayerHealth : MonoBehaviour
     private int MaxHealth;
     public Vector3 RespawnPoint;
 
+    // UI
+    public UI_Manager MyUI_Manager;
+
 
     // Start is called before the first frame update
     void Start()
     {
         RespawnPoint = transform.position;
         MaxHealth = Health;
+        MyUI_Manager.SetHealth(Health);
     }
 
    public void Respawn()
     {
         transform.position = RespawnPoint;
         Health = MaxHealth;
+        MyUI_Manager.SetHealth(Health);
     }
 
     public void ChangeHealth(int ChangeHealthBy)
     {
         Health = Health + ChangeHealthBy;
+        MyUI_Manager.SetHealth(Health);
         if(Health <= 0)
         {
             Respawn();

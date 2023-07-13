@@ -11,10 +11,12 @@ public class WeaponHandler : MonoBehaviour
     public Weapon PlayerWeapon;
     public float ThrowForce;
     public PlayerMovement playerMovement;
+    public UI_Manager MyUI_Manager;
 
     // Start is called before the first frame update
     void Start()
-    {        
+    {
+        
         if (PlayerWeapon != null)
         {
            MyGunTransform = PlayerWeapon.transform;
@@ -28,7 +30,10 @@ public class WeaponHandler : MonoBehaviour
         DropWeapon();
         if (PlayerWeapon != null)
         {
+            // This is what shoots
           playerMovement.ApplyRecoil(PlayerWeapon.Shoot(MyHead));
+            // [Optimize] have only input in update
+            MyUI_Manager.SetAmmo(PlayerWeapon.Ammo);
             if (Input.GetKeyDown(KeyCode.R))
             {
                 StartCoroutine(PlayerWeapon.Reload());

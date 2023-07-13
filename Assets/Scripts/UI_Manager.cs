@@ -17,7 +17,7 @@ public class UI_Manager : MonoBehaviour
 
     public void SetHealth(int Health)
     {
-        HealthText.text = Health.ToString();
+        HealthText.text = "Health " + Health.ToString();
     }
     public void SetAmmo(int Ammo)
     {
@@ -25,7 +25,7 @@ public class UI_Manager : MonoBehaviour
     }
     public void SetBoost(int Boost)
     {
-        BoostText.text = (Boost.ToString() + " Boosts" );
+        BoostText.text = "Boosts " + Boost.ToString();
     }
 
 }

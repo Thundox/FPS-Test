@@ -54,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
         playerTransform = transform;
         RB = GetComponent<Rigidbody>();
         myAudioSource = GetComponent<AudioSource>();
+        MyUI_Manager.SetBoost(BoostCharges);
+        
     }
     private void FixedUpdate()
     {
