@@ -8452,6 +8452,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1041697062 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 966074567, guid: cd20a175f6e71d142a6371ffa47120c9, type: 3}
+  m_PrefabInstance: {fileID: 1003285859}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041697058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4ac0493aa21d934da0484e2a8bddabb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1065175546 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 310234803089363032, guid: fcaab3911a3cfaf4da9ea73ea56e31a2, type: 3}
@@ -13907,6 +13918,7 @@ MonoBehaviour:
   HealthText: {fileID: 587562213}
   AmmoText: {fileID: 2077934249}
   BoostText: {fileID: 1864515537}
+  MyWeaponHandler: {fileID: 1041697062}
 --- !u!4 &1501313733 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 310234803089363032, guid: fcaab3911a3cfaf4da9ea73ea56e31a2, type: 3}
