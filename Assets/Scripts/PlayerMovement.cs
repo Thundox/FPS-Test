@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     public float BoostStrength;
     public int BoostCharges;
     public float BoostRechargeTime;
+    public AudioSource BoostAudioSource;
 
     // UI
     public UI_Manager MyUI_Manager;
@@ -121,7 +122,17 @@ public class PlayerMovement : MonoBehaviour
             MyUI_Manager.SetBoost(BoostCharges);
            Debug.Log("e is pressed");
            var LocalVelocity = transform.InverseTransformDirection(RB.velocity);
-           if (LocalVelocity.x < -BoostStrength)
+
+                if (BoostAudioSource != null)
+                {
+                    Debug.Log("sound should play");
+                    BoostAudioSource.Play();
+                }
+                else
+                    Debug.Log("No Boost sound set");
+
+            // If player is travelling fast left swap speed to right
+            if (LocalVelocity.x < -BoostStrength)
             {
                 LocalVelocity.x = LocalVelocity.x * -1;
                 RB.velocity = transform.TransformDirection(LocalVelocity);
@@ -148,6 +159,15 @@ public class PlayerMovement : MonoBehaviour
             MyUI_Manager.SetBoost(BoostCharges);
             Debug.Log("Q is pressed");
             var LocalVelocity = transform.InverseTransformDirection(RB.velocity);
+
+                if (BoostAudioSource != null)
+                {
+                    Debug.Log("sound should play");
+                    BoostAudioSource.Play();        
+                }
+                else
+                    Debug.Log("No Boost sound set");
+
             // If player is travelling fast right swap speed to left
             if (LocalVelocity.x > BoostStrength)
             {
