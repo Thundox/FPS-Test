@@ -196,7 +196,15 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator BoostRecharge()
     {      
-            yield return new WaitForSeconds(BoostRechargeTime);
+
+        float StartTime = Time.time;
+        while (Time.time - StartTime < BoostRechargeTime) 
+        {
+            float percentage = (Time.time -StartTime) / BoostRechargeTime;
+            MyUI_Manager.SetBoostBarUI(percentage);
+            yield return null; // Wait for the next frame
+        }
+
         if (BoostCharges <= 0)
         {
             Debug.Log("Boosts before recharge: " + BoostCharges);
@@ -204,8 +212,7 @@ public class PlayerMovement : MonoBehaviour
             MyUI_Manager.SetBoost(BoostCharges);
             Debug.Log("Boosts after recharge: " + BoostCharges);
         }
-            
-            
+              
     }
 
     public void ApplyRecoil(float Recoil)
