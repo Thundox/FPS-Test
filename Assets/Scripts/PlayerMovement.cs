@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     private float MovementHorizontal = 0;
     private float MovementVertical = 0;
     private float RotateVertical = 0;
+    public bool Hover;
+    private bool HoverCanceled;
     // Handles Jump behaviour
     public float JumpHeight;
     private bool IsGrounded = false;
@@ -30,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private float MinimumRecoil;
 
     public Vector3 MyVelocity;
+    public Vector3 MyPreviousVelocity;
     private Transform playerTransform;
 
     // Boost Variables
@@ -66,7 +69,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MyVelocity = RB.velocity;
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            HoverCanceled = true;
+        }
         float RotateHorizontal = Input.GetAxis("Mouse X");
         //RotateVertical = Input.GetAxis("Mouse Y");
         MovementHorizontal = Input.GetAxis("Horizontal");
@@ -112,6 +118,19 @@ public class PlayerMovement : MonoBehaviour
 
         RB.AddForce(transform.forward * vertical * Speed, ForceMode.Force);
         RB.AddForce(transform.right * horizontal * Speed, ForceMode.Force);
+        if (Hover == true)
+        {
+           
+            RB.velocity = new Vector3(0, 0, 0);
+            if (HoverCanceled == true)
+            {
+                MyVelocity = MyPreviousVelocity;
+                Hover = false;
+                HoverCanceled = false;
+            }
+            
+        }
+
     }
 
     void Boost()
@@ -272,7 +291,12 @@ public class PlayerMovement : MonoBehaviour
                 else
                     Debug.Log("No jump sound set");
             }
-            
+            // Else hover
+            else if(Hover == false)
+            {
+                MyPreviousVelocity = RB.velocity;
+                Hover = true;
+            }
         }
         
 
