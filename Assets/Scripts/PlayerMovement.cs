@@ -277,8 +277,10 @@ public class PlayerMovement : MonoBehaviour
     }
     void Jump()
     {
+       
         if (Input.GetKeyDown("space"))
         {
+            //Regular jump:
             Debug.Log("space is pressed");
             if (IsGrounded == true)
             {
@@ -291,11 +293,21 @@ public class PlayerMovement : MonoBehaviour
                 else
                     Debug.Log("No jump sound set");
             }
-            // Else hover
+            
+            // Else Initate Hover if already in Air.
             else if(Hover == false)
             {
                 MyPreviousVelocity = RB.velocity;
                 Hover = true;
+                RB.constraints = RigidbodyConstraints.FreezeAll;
+            }
+            
+            // Else Initate ground pound if already hovering.
+            else
+            {
+                RB.constraints = RigidbodyConstraints.FreezeRotation;
+                RB.velocity = Vector3.down * 20;
+                Hover = false;
             }
         }
         
