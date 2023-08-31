@@ -16,12 +16,14 @@ public class Weapon : MonoBehaviour
     private bool CanShoot;
     public bool IsAutomatic;
     public bool IsHeld;
+    public bool ShootsProjectiles;
     // Recoil settings
     public float RecoilVertical;
     public LayerMask MyLayerMask;
     private AudioSource myAudioSource;
 
     public GameObject Turret;
+    public GameObject Projectile;
 
     // Start is called before the first frame update
     void Start()
@@ -54,8 +56,20 @@ public class Weapon : MonoBehaviour
             Ammo = Ammo - 1;
             Debug.Log("Left Click Pressed");
             Debug.DrawRay(MyHead.position, MyHead.forward * Range, Color.red, 5);
-            RaycastHit HitData;
-            Ray ray=Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (ShootsProjectiles == true)
+            {
+                GameObject newObject = Instantiate(Projectile, transform.position, this.transform.rotation);
+            }
+            else
+            {
+                RaycastHit HitData;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out HitData, Range, MyLayerMask))
+                {
+                    ResolveHittingEnemy(HitData, Damage);
+                }
+            }
+
             StartCoroutine(DelayShot() );
             if (myAudioSource != null)
             {
@@ -64,10 +78,7 @@ public class Weapon : MonoBehaviour
             else
                 Debug.Log(this.name + " Gun is Missing sound!!!");
             //Check to see if we hit an enemy
-           if (Physics.Raycast(ray, out HitData, Range, MyLayerMask))
-            {
-                ResolveHittingEnemy(HitData, Damage);
-            }
+           
             return RecoilVertical;
         }
         return 0;

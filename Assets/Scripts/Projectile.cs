@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     public float speed = 10;
     Rigidbody rb;
     Vector3 Velocity;
+    public bool PlayerProjectile;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -30,10 +31,27 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (PlayerProjectile == false)
         {
-            other.GetComponent<PlayerHealth>().ChangeHealth(-damage);
-            Destroy(gameObject);
+            if (other.tag == "Player")
+            {
+                other.GetComponent<PlayerHealth>().ChangeHealth(-damage);
+                Destroy(gameObject);
+            }
         }
+        else
+        {
+            if (other.tag == "Enemy")
+            {
+                if (other.GetComponent<Enemy>().DamageThenCheckEnemyDead(damage))
+                {
+                    other.transform.gameObject.SetActive(false);
+                }
+                Destroy(gameObject);
+                
+            }
+        }
+                
+        
     }
 }

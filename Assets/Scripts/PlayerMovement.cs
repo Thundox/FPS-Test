@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public float JumpHeight;
     private bool IsGrounded = false;
     public AudioSource myAudioSource;
-    //Recoil
+    // Recoil
     public float RecoilSpeed;
     public float MinimumRecoilPercent;
     public float CurrentRecoil;
@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
     
 
     // Old
-    //public float maxSpeed = 10.0f;
+    // public float maxSpeed = 10.0f;
 
     // Start is called before the first frame update
     void Start()
