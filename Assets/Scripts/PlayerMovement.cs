@@ -89,6 +89,11 @@ public class PlayerMovement : MonoBehaviour
         Boost();
     }
 
+    public void SetIsGrounded(bool Argument)
+    {
+        IsGrounded = Argument;
+    }
+
     public float GetRotateVerticle()
     {
         return RotateVertical;
@@ -313,47 +318,7 @@ public class PlayerMovement : MonoBehaviour
         
 
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if( collision.gameObject.CompareTag("Ground"))
-        {
-            IsGrounded = true;
-        }
-
-        
     
-
-    
-    
-        //if (collision.gameObject.CompareTag("Trap"))
-        //{
-        //        // calculate the bounce direction
-        //        float bounceForce = 10f;
-        //        Vector3 bounceDirection = Vector3.Reflect(RB.velocity.normalized, collision.contacts[0].normal);
-
-        //    // apply the bounce force
-        //    RB.AddForce(bounceDirection * bounceForce, ForceMode.Impulse);
-        //}
-    
-
-
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            IsGrounded = false;
-        }
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            IsGrounded = true;
-        }
-    }
 
     private void OnTriggerEnter(Collider collision)
     {
